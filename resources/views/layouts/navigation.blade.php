@@ -43,6 +43,15 @@
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
+                            <x-dropdown-link :href="route('admin.corrals')">
+                                Corrals
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('admin.corrals.create')">
+                                Create Corral
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('admin.animals.create')">
+                                Create Animal
+                            </x-dropdown-link>
                         </form>
                     </x-slot>
                 </x-dropdown>
