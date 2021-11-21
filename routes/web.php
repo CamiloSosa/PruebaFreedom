@@ -37,6 +37,9 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::post('/animals/{animal_id}', [AnimalController::class, 'index'])->name('admin.animals.update');
     Route::get('/animals/create', [AnimalController::class, 'create'])->name('admin.animals.create');
     Route::post('/animals', [AnimalController::class, 'store'])->name('admin.animals.store');
+
+    //get animals
+    Route::get('get_animals/{corral_id}', [CorralController::class, 'getAnimals']);
 });
 
 require __DIR__.'/auth.php';

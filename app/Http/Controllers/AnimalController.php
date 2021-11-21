@@ -17,7 +17,7 @@ class AnimalController extends Controller
         $animal = new Animal();
         $corrals = Corral::all();
         $header = 'Create Animal';
-        return view('animals.create', compact('animal', 'header'));
+        return view('animals.create', compact('animal', 'header', 'corrals'));
     }
 
     /**
@@ -37,9 +37,9 @@ class AnimalController extends Controller
      */
     public function store(Request $request){
         $animal = new Animal($request->all());
-
+        $animal->dangerous = $request->dangerous ? 1 : 0;
         if($animal->save()){
-            return redirect()->route('admin.animals');
+            return redirect()->route('admin.corrals');
         }else{
             return redirect()->route('admin.animals.create');
         }
@@ -51,9 +51,10 @@ class AnimalController extends Controller
      */
     public function update(Request $request, $id){
         $animal = Animal::find($id);
+        $animal->dangerous = $request->dangerous ? 1 : 0;
 
         if($animal->update($request->all())){
-            return redirect()->route('admin.animals');
+            return redirect()->route('admin.corrals');
         }else{
             return redirect()->route('admin.animals.edit', $id);
         }

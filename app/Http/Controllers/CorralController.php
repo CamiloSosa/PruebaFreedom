@@ -66,4 +66,14 @@ class CorralController extends Controller
             return redirect()->route('admin.corrals.edit', $id);
         }
     }
+
+    /**
+     * get animals
+     */
+    public function getAnimals($id){
+        $corral = Corral::find($id);
+
+        $animals = $corral->animals;
+        return $animals;
+    }
 }
