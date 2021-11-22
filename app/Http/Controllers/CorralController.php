@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Alert;
 use App\Models\Corral;
 use Illuminate\Http\Request;
-
+use PDF;
 class CorralController extends Controller
 {
     
@@ -78,5 +78,15 @@ class CorralController extends Controller
 
         $animals = $corral->animals;
         return $animals;
+    }
+
+    /**
+     * print to pdf
+     */
+    public function print(){
+        $corrals = Corral::with('animals')->get();
+        $html = view('pdf.corrals', compact('corrals'))->render();
+        $pdf = PDF::loadHTML($html)->setPaper('a4', 'landscape')->setWarnings(false)->save('corrals.pdf');
+        return $pdf->download('corrals.pdf'); // redirect()->route('admin.corrals');
     }
 }

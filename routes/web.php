@@ -26,6 +26,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function(){
 
     // Corrals CRUD
     Route::get('/corrals', [CorralController::class, 'index'])->name('admin.corrals');
+    Route::get('/corrals/print', [CorralController::class, 'print'])->name('admin.corrals.print');
     Route::get('/corrals/{corral_id}/edit', [CorralController::class, 'index'])->name('admin.corrals.edit');
     Route::post('/corrals/{corral_id}', [CorralController::class, 'index'])->name('admin.corrals.update');
     Route::get('/corrals/create', [CorralController::class, 'create'])->name('admin.corrals.create');
