@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Alert;
 use App\Models\Corral;
 use Illuminate\Http\Request;
 
@@ -47,6 +48,7 @@ class CorralController extends Controller
         $corral = new Corral($request->all());
 
         if($corral->save()){
+            Alert::success('Success', 'Corral created');
             return redirect()->route('admin.corrals');
         }else{
             return redirect()->route('admin.corrals.create');
@@ -61,6 +63,7 @@ class CorralController extends Controller
         $corral = Corral::find($id);
 
         if($corral->update($request->all())){
+            Alert::success('Success', 'Corral edited');
             return redirect()->route('admin.corrals');
         }else{
             return redirect()->route('admin.corrals.edit', $id);

@@ -18,4 +18,18 @@ class Corral extends Model
     public function animals(){
         return $this->hasMany('App\Models\Animal');
     }
+
+    /**
+     * accessort to get corral name by id
+     */
+    public function getNameAttribute(){
+        return "Corral: " . $this->id; 
+    }
+
+    /**
+     * accessort to get the avg
+     */
+    public function getAvgAttribute(){
+        return $this->animals->avg('age'); 
+    }
 }

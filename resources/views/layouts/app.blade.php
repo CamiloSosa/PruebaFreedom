@@ -20,6 +20,7 @@
         <script src="{{ asset('js/corral.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
+        @include('sweetalert::alert')
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
 
@@ -32,6 +33,7 @@
 
             <!-- Page Content -->
             <main class="container h-100 bg-white mt-5 d-flex justify-content-center align-items-center">
+                
                 @yield('content')
             </main>
         </div>

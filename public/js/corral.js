@@ -5,7 +5,8 @@ var __webpack_exports__ = {};
   \********************************/
 $(document).ready(function () {
   $('#corrals_select').change(function () {
-    var corral_id = $(this).val();
+    var corral_id = $(this).val().split('//')[0];
+    var avg = $(this).val().split('//')[1];
 
     if (corral_id !== 'none') {
       $.ajax({
@@ -13,6 +14,7 @@ $(document).ready(function () {
       }).done(function (response) {
         var tbody = $('#tbody');
         tbody.empty();
+        $('#avg').text(avg);
         response.forEach(function (animal) {
           tbody.append('<tr><td>' + animal.age + '</td><td>' + (animal.dangerous ? "Yes" : "no") + '</td><td>' + animal.corral_id + '</td></tr>');
         });
